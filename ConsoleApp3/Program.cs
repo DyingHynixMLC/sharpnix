@@ -77,14 +77,6 @@ namespace ConsoleApp3
 
         static void Main(string[] args)
         {
-            if (args.Length > 0 && args[0] == "--sudo")
-            {
-                userName = "root";
-            }
-            else
-            {
-                userName = ReadLineFromFile(SharpnixCFG, 1);
-            }
             Console.WriteLine(@"
    _____ _                            _      
   / ____| |                          (_)     
@@ -102,6 +94,14 @@ namespace ConsoleApp3
             if (!File.Exists(SharpnixCFG))
             {
                 oobe();
+            }
+            if (args.Length > 0 && args[0] == "--sudo")
+            {
+                userName = "root";
+            }
+            else
+            {
+                userName = ReadLineFromFile(SharpnixCFG, 1);
             }
             hostName = ReadLineFromFile(SharpnixCFG, 2);
             UTCOffset = ReadLineFromFile(SharpnixCFG, 3);
@@ -121,7 +121,7 @@ namespace ConsoleApp3
             Console.WriteLine("       /\\_/\\  \r\n      ( o.o ) \r\n       > ^ <");
             Console.WriteLine("Hi! I'm Sharpie. Let's get started configuring Sharpnix for you!");
             Thread.Sleep(1250);
-            Console.WriteLine("Alrighty, let's get you started. First off I need your hostname.");
+            Console.WriteLine("Alrighty, let's begin. First off I need your hostname.");
             hostName = Console.ReadLine();
             while (string.IsNullOrWhiteSpace(hostName))
             {
@@ -162,9 +162,10 @@ namespace ConsoleApp3
             Console.WriteLine("Let's continue, shall we?");
             Console.WriteLine("Alrighty, time for your username, i will refer to you by that!");
             userName = Console.ReadLine();
-            Console.WriteLine("Okay, let's get your timezone!");
+            Console.WriteLine("Okay, let's get your timezone! Please format it like 'UTC+*', or else i won't understand it.");
             UTCOffset = Console.ReadLine();
             Console.WriteLine("Great! We're done now. Enjoy!");
+            Thread.Sleep(500);
             Console.Clear();
             using StreamWriter streamWriter = new StreamWriter(SharpnixCFG);
             string config = $"{userName}\n{hostName}\n{UTCOffset}\n\n100";
@@ -440,7 +441,7 @@ namespace ConsoleApp3
     $"Uptime: {Environment.TickCount / 1000}s",
     $"Theme: default",
     $"Packages: 1 (default)",
-    $"Terminal: /dev/shell1",
+    $"Terminal: /dev/shell0",
     $"Shell: Sharpnix_{build}",
     $"Memory:   {memBar}  {usedMB}MB / {maxMB}MB",
 };
