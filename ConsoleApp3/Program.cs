@@ -18,12 +18,11 @@ namespace ConsoleApp3
     {
         public static string shellPath = "/";
         public static string build = "0.1.0";
-        public static string SharpnixCFG = @"C:\Sharpnix\Sharpnix.ini";
+        public static string SharpnixCFG = @".\\Sharpnix\Sharpnix.ini";
         public static string userName = "root";
         public static string hostName = "root";
         public static string UTCOffset = "UTC+0";
         public static bool isRCM = false;
-        public static bool debug = false; // unused for now
         static string? ReadLineFromFile(string filePath, int lineNumber)
         {
             using StreamReader reader = new StreamReader(filePath);
@@ -68,7 +67,7 @@ namespace ConsoleApp3
 
         static string TranslatePath(string unixPath)
         {
-            string basePath = @"C:\Sharpnix";
+            string basePath = @".\Sharpnix";
             if (unixPath == "/")
                 return basePath;
 
@@ -116,7 +115,7 @@ namespace ConsoleApp3
 
         static void oobe()
         {
-            Directory.CreateDirectory(@"C:\Sharpnix");
+            Directory.CreateDirectory(@".\Sharpnix");
             File.Create(SharpnixCFG).Close();
             int sharpieTries = 0;
             Console.WriteLine("       /\\_/\\  \r\n      ( o.o ) \r\n       > ^ <");
