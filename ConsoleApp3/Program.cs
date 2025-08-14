@@ -19,7 +19,7 @@ namespace ConsoleApp3
         public static string shellPath = "/";
         public static string build = "0.1.0";
         public static string SharpnixCFG = @".\Sharpnix\Sharpnix.ini";
-        public static string userName = "root";
+        public static string userName = "root"; // placeholder
         public static string hostName = "root";
         public static string UTCOffset = "UTC+0";
         public static bool isRCM = false;
